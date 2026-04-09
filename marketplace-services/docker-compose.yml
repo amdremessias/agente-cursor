@@ -43,9 +43,10 @@ services:
       - internal
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+      interval: 5s
+      timeout: 10s
+      retries: 15
+      start_period: 40s
     logging:
       driver: "json-file"
       options:
