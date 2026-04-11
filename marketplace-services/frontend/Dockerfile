@@ -4,7 +4,7 @@
 FROM node:20-alpine AS deps
 WORKDIR /app
 
-COPY package.json bun.lockb ./
+COPY package.json bun.lock ./
 RUN apk add --no-cache libc6-compat && \
     npm install -g bun && \
     bun install --frozen-lockfile --production=false
