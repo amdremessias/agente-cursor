@@ -2,7 +2,6 @@ version: '3.8'
 
 networks:
   internal:
-    name: marketplace_internal
     driver: bridge
     internal: false
 
@@ -46,7 +45,6 @@ services:
       interval: 5s
       timeout: 10s
       retries: 15
-      start_period: 40s
     logging:
       driver: "json-file"
       options:
@@ -84,10 +82,8 @@ services:
     container_name: marketplace_backend
     restart: unless-stopped
     depends_on:
-      db:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
+      - db
+      - redis
     environment:
       NODE_ENV: production
       DB_HOST: db
